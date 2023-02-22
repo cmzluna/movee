@@ -1,7 +1,10 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   theme: {
     extend: {
       animation: {
@@ -11,8 +14,8 @@ module.exports = {
       colors: {
         primary: "#FF6363",
         secondary: {
-          100: "#E2E2D5",
-          200: "#888883",
+          100: "#5a55e1",
+          200: "#383591",
         },
         "app-pure-white": "hsl(0, 0%, 100%)", // #FFFFFF
         "app-red": "hsl(0, 97%, 63%)", // #FC4747
@@ -54,5 +57,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin")],
 };

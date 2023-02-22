@@ -1,12 +1,14 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Movie } from "../../types";
-
+import Rate from "../Rate";
 export default function Card({
   id,
   original_title,
   original_language,
   poster_path,
+  credits,
   release_date,
   vote_average,
   genres,
@@ -23,25 +25,23 @@ export default function Card({
   return (
     <Link key={id} to={`/movie/${id}`} state={{ backgroundLocation: location }}>
       <div
-        className="relative  hover:animate-pulse bg-blue-900 card-hover-animation mb-4 rounded-md overflow-hidden cursor-pointer"
+        className="relative bg-gradient-to-b from-white to-black    bg-blue-900 card-hover-animation  mb-4 rounded-md overflow-hidden hover:gradient_border hover:cursor-pointer"
         onClick={handleClick}
       >
-        <span className="absolute top-2 right-2">{vote_average}</span>
         <img
           src={testImage}
           alt="stew"
-          className="h-[140px] md:h-[200px] lg:h-[240px] w-full object-cover object-center"
+          className="  mix-blend-multiply h-[140px] md:h-[200px] lg:h-[240px] w-full object-cover object-center"
         />
-        <div className="m-4">
+        <div className=" w-full flex flex-col items-start absolute   bottom-2 left-2  b-10">
           <span className="font-bold">{original_title}</span>
-          <span className="block text-gray-500 text-sm">
-            {original_language}
-          </span>
-          <span className="block text-gray-500 text-sm">
+          <span className="block   text-sm">{original_language}</span>
+          <span className="block   text-sm">
             {genres &&
               genres.map((genre) => <p key={genre.id}>{genre.name}</p>)}
           </span>
-          <span className="block text-gray-500 text-sm">{release_date}</span>
+          <span className="block   text-sm">{release_date} -</span>
+          <Rate rating={vote_average} />
         </div>
       </div>
     </Link>

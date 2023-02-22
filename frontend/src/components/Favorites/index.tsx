@@ -1,19 +1,20 @@
 import React from "react";
 import { useAppSelector } from "../../store/hooks";
 import { selectFavorites } from "../../store/slices/favorites";
-// import { selectLoggedUser } from "../../store/slices/users";
 import Collection from "../Collection";
 
 const Favorites = () => {
   const favoritesList = useAppSelector(selectFavorites);
 
-  // console.log("favoritesList ==> ", favoritesList);
-
   return (
     <div>
-      <div className="border border-gray-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+      <div className="  ">
         {favoritesList.length ? (
-          <Collection data={favoritesList} title="Your favorites" />
+          <Collection
+            data={favoritesList}
+            isLatestReleases={false}
+            title="Your favorites"
+          />
         ) : (
           <h2>No favorites yet...</h2>
         )}

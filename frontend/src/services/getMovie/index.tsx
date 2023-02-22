@@ -9,6 +9,14 @@ query GetMovieQuery($id: Int!) {
       original_title
       original_language
       poster_path
+      credits {
+        cast {
+          character
+        }
+      }
+      genres {
+        name
+      }
       release_date
       vote_average
       overview

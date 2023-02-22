@@ -12,7 +12,7 @@ export default function Heading({ media_type, title }: Props) {
         <p
           className={
             media_type === "movie"
-              ? "ml-2 rounded-md border-2 py-px px-2 text-[8px] font-medium uppercase tracking-wider text-app-pure-white sm:ml-4 sm:text-[10px]"
+              ? " tab_genre"
               : "ml-2 rounded-md border-2 border-app-pure-white bg-app-pure-white py-px px-2 text-[8px] font-medium uppercase tracking-wider text-app-dark-blue sm:ml-4 sm:text-[10px] "
           }
         >

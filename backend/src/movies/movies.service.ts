@@ -66,4 +66,16 @@ export class MoviesService {
       return { ok: false, error };
     }
   }
+
+  async byGenres(genresIds: string): Promise<MoviesOutput> {
+    try {
+      const movies = await this.api.movies.byGenres(genresIds);
+      if (!movies) {
+        return { ok: false, error: errorMessage.movieNotFound };
+      }
+      return { ok: true, movies };
+    } catch (error) {
+      return { ok: false, error };
+    }
+  }
 }
