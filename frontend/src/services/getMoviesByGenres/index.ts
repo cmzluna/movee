@@ -22,6 +22,7 @@ type genresFilter = {
 };
 
 const getMoviesByGenres = async (genresIds: string[]) => {
+  // TODO: implement multiple genres selection
   const queryVariables = genresIds.join(",");
 
   return callApi<genresFilter>(GET_MOVIES_BY_GENRES, {
