@@ -10,6 +10,9 @@ query GetGenres($genresIds: String!) {
        original_language
        release_date
        overview
+       poster_path
+       release_date
+       vote_average
    }
  }
 }`;
@@ -19,8 +22,6 @@ type genresFilter = {
 };
 
 const getMoviesByGenres = async (genresIds: string[]) => {
-  //   if (!genresIds || !genresIds.length) return [];
-
   const queryVariables = genresIds.join(",");
 
   return callApi<genresFilter>(GET_MOVIES_BY_GENRES, {

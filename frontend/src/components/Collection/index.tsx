@@ -6,7 +6,7 @@ import { Movie } from "../../types";
 
 type Props = {
   data: Movie[];
-  title: string;
+  title?: string;
   type?: string;
   isLatestReleases?: boolean;
   // hasSelector: boolean;
@@ -14,7 +14,7 @@ type Props = {
 
 export default function Collection({
   data,
-  title,
+  title = "",
   type = "movie",
   isLatestReleases,
 }: Props) {
@@ -25,7 +25,7 @@ export default function Collection({
   return (
     <>
       <section className=" mb-6 md:mb-10 ">
-        <Heading title={title} media_type={type} />
+        {title && type && <Heading title={title} media_type={type} />}
         <section
           className={
             isLatestReleases

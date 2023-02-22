@@ -28,7 +28,7 @@ const Navigator = () => {
   };
 
   return (
-    <nav className="  sticky gradient_border top-0 z-50 p-2 flex items-center justify-between  opacity-80 md:mx-2 lg:mx-6 md:mt-4 md:mb-[33px] md:rounded-[8px] lg:fixed lg:left-0 lg:mr-0 lg:h-2/4 lg:flex-col lg:py-4 ">
+    <nav className="  sticky gradient_border bg-gray-900 top-0 z-50 p-2 flex items-center justify-between  opacity-80 md:mx-2 lg:mx-6 md:mt-4 md:mb-[33px] md:rounded-[8px] lg:fixed lg:left-0 lg:mr-0 lg:h-2/4 lg:flex-col lg:py-4 ">
       <img
         className="nav-profile-img w-16 h-16  fill-white"
         src={MovieLogo}
