@@ -5,14 +5,17 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   addFavorite,
   removeFavorite,
-  //selectUserFavorites,
+  selectFavorites,
 } from "../../store/slices/favorites";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 // import { selectLoggedUser } from "../../store/slices/users";
 import { Movie } from "../../types";
+import Rate from "../Rate";
 
 const MovieDetail = () => {
   const navigate = useNavigate();
-  // const favoritesList = useAppSelector(selectUserFavorites);
+  const favoritesList = useAppSelector(selectFavorites);
   const dispatch = useAppDispatch();
   // const loggedUser = useAppSelector(selectLoggedUser);
 
@@ -20,10 +23,10 @@ const MovieDetail = () => {
   const movieId = id && parseInt(id);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  // const isFavorite =
-  //   favoritesList &&
-  //   favoritesList.length &&
-  //   favoritesList.some(({ id }) => id === movieId);
+  const isFavorite =
+    favoritesList &&
+    favoritesList.length &&
+    favoritesList.some(({ id }) => id === movieId);
 
   const baseImageURL = "https://image.tmdb.org/t/p/w300";
   const posterImageURL = `https://image.tmdb.org/t/p/original${selectedMovie?.poster_path}`;
@@ -37,13 +40,14 @@ const MovieDetail = () => {
     );
 
   const addToFavorite = () => {
-    // if (isMovieSelected && isFavorite) {
-    //   console.log("en if!");
-    //   dispatch(removeFavorite({ uid: loggedUser.id, favorite: selectedMovie }));
-    //   return;
-    // }
+    if (isMovieSelected && isFavorite) {
+      console.log("en if!");
+      dispatch(removeFavorite(selectedMovie));
+      return;
+    }
 
     isMovieSelected &&
+      // TODO:
       //  dispatch(addFavorite({ uid: "0", favorite: selectedMovie }));
       dispatch(addFavorite(selectedMovie));
     return;
@@ -61,46 +65,73 @@ const MovieDetail = () => {
         .then((res) => {
           const movie = res?.data.movieDetail.movie;
 
+          console.log("MOVIE = ", movie);
           if (movie) setSelectedMovie(movie);
         })
         .catch((err) => err);
     }
-  }, [id]);
+  }, [id, isMovieSelected, movieId]);
 
   return (
-    <div
-      className=" h-full w-full  bg-red-800 top-32 lg:top-20 left-16 lg:left-32 right-16 rounded-lg"
-      style={{
-        border: "2px solid #444",
-      }}
-    >
+    <div className=" h-full w-full top-32 lg:top-20 left-16 lg:left-32 right-16 rounded-lg    ">
       <header
-        style={{ backgroundImage: `url(${posterImageURL}) ` }}
-        className={`   border-gray-800 border-1 bg-center h-full bg-cover rounded-lg bg-[radial-gradient(circle_at_20%_50%,rgba(30,39,44,0.9)_0%,rgba(30,39,44,0.8)_100%)]`}
+        style={{
+          backgroundImage: `url(${posterImageURL})
+         `,
+        }}
+        className={` bg-center h-full  bg-cover rounded-lg  `}
       >
-        <div className=" w-full mx-auto ">
-          <div className="flex flex-wrap ">
-            <div className="border-red-200  h-80  border-2 w-full   relative md:basis-1/3 md:max-w-md">
+        <div
+          className=" w-full h-full  mx-auto  "
+          style={{ background: " rgba(0, 0, 0, 0.6)" }}
+        >
+          <div className=" flex flex-wrap ">
+            <div className=" h-80 w-full md:w-1/3 lg:w-1/3">
               <img
                 src={`${baseImageURL}/${selectedMovie?.poster_path}`}
                 alt=""
                 className="block mx-auto w-full h-full object-cover object-top"
               />
-              <button
-                className="bg-gray-400 rounded-md m-4 p-4"
+
+              <FontAwesomeIcon
+                className="cursor-pointer w-12 h-12 absolute top-2 left-2 rounded-md "
+                icon={faHeart}
+                color={isFavorite ? "red" : "white"}
                 onClick={addToFavorite}
-              >
-                Toggle favorite
-              </button>
+              />
+
               {/* {isFavorite && (
                 <p className="  text-white">Added to favorites list</p>
               )} */}
             </div>
 
-            <div className="   bg-gray-600 h-full relative w-full md:max-w-md md:basis-2/3 lg:max-w-2xl px-2 mx-auto xl:max-w-4xl">
-              <div className="content ">
+            <div className=" relative w-full h-full md:w-2/3 lg:w-3/4  px-2 mx-auto  ">
+              <div className=" content flex flex-col items-end">
                 <h2 className="text-5xl">{selectedMovie?.original_title}</h2>
-                <p>{selectedMovie?.overview}</p>
+                <ul className="flex  ">
+                  {selectedMovie?.genres?.map((genre) => (
+                    <li className=" tab_genre">{genre.name}</li>
+                  ))}
+                </ul>
+                <div className=" text-start my-10 ">
+                  {selectedMovie?.overview}
+
+                  <div className="  mt-10 ">
+                    <h2>Average rating:</h2>{" "}
+                    {selectedMovie && (
+                      <Rate rating={selectedMovie.vote_average} />
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-10 w-full items-start">
+                  <h2>Main characters:</h2>{" "}
+                  <ul className="flex flex-wrap">
+                    {selectedMovie?.credits?.cast?.slice(0, 10).map((item) => (
+                      <li>{item.character} - </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

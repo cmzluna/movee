@@ -76,7 +76,8 @@ export class ApiService {
       this.get<Movie>(endPoints.movies.findById(id), {
         append_to_response: 'videos,credits',
       }),
-
+    byGenres: (genresIds: string): Promise<Movie[]> =>
+      this.get<Movie[]>(endPoints.movies.genres(genresIds)),
     findSimilarById: (id: number): Promise<Movie[]> =>
       this.get<Movie[]>(endPoints.movies.findSimilarById(id)),
   };

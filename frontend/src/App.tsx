@@ -11,13 +11,13 @@ import getLatestReleases from "./services/getLatestReleases";
 import Collection from "./components/Collection";
 import Search from "./components/Search";
 import MovieDetail from "./components/MovieDetail";
-import getAllGenres from "./services/getAllGenres";
-import { Genre } from "./types";
+
 import Drawer from "./components/Drawer";
+import Categories from "./components/Categories";
 
 function App() {
   const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
-  const [genresList, setGenresList] = useState<Genre[]>([]);
+
   const [isOpen, setIsOpen] = useState(false);
 
   console.log("EN APP");
@@ -30,19 +30,6 @@ function App() {
 
       return data;
     };
-
-    const genresList = async () => {
-      const data = await getAllGenres<Genre>();
-
-      return data;
-    };
-
-    genresList()
-      .then((data) => {
-        const genres = data?.genres;
-        if (genres) setGenresList(genres);
-      })
-      .catch((err) => err);
 
     getData()
       .then((res) => {
@@ -65,11 +52,14 @@ function App() {
         <Route
           path="/"
           element={
-            <Collection
-              data={latestReleases}
-              title={"Latest Releases"}
-              isLatestReleases={false}
-            />
+            <>
+              <Collection
+                data={latestReleases}
+                title={"Latest Releases"}
+                isLatestReleases={false}
+              />
+              <Categories />
+            </>
           }
         />
       </Routes>

@@ -37,4 +37,9 @@ export class MoviesResolver {
   similarMovies(@Args() similarMovieInput: IdInput): Promise<MoviesOutput> {
     return this.movieService.similarMovies(similarMovieInput.id);
   }
+
+  @Query((returns) => MoviesOutput)
+  findByGenres(@Args() genresIdsInput: SearchInput): Promise<MoviesOutput> {
+    return this.movieService.byGenres(genresIdsInput.query);
+  }
 }

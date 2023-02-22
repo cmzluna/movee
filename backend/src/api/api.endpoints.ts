@@ -4,6 +4,7 @@ export const endPoints = {
     upcoming: 'movie/upcoming',
     popular: 'movie/popular',
     findById: (id: number) => `movie/${id}`,
+    genres: (genresIds: string) => `discover/movie?with_genres=${genresIds}`,
     findSimilarById: (id: number) => `movie/${id}/similar`,
   },
   shows: {

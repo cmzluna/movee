@@ -10,6 +10,8 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addFavorite: (state, action: PayloadAction<Movie>) => {
+      const movieId = action.payload.id;
+      if (state.some((fav) => fav.id === movieId)) return { ...state };
       state.push(action.payload);
     },
 
@@ -19,10 +21,13 @@ export const favoritesSlice = createSlice({
         (favorite: Movie) => favorite.id !== favoriteToDelete.id
       );
     },
+
+    clearAllFavorites: () => initialState,
   },
 });
 
-export const { addFavorite, removeFavorite } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, clearAllFavorites } =
+  favoritesSlice.actions;
 export const selectFavorites = (state: RootState) => state.favorites;
 
 export default favoritesSlice.reducer;
