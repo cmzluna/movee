@@ -2,6 +2,9 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import getAllGenres from "../../services/getAllGenres";
 import getMoviesByGenres from "../../services/getMoviesByGenres";
 import { Genre, Movie } from "../../types";
+import renderGenreCollection from "../../utilities/renderCategories";
+import renderCategories from "../../utilities/renderCategories";
+import Category from "../Category";
 import Collection from "../Collection";
 import Heading from "../Heading";
 
@@ -33,9 +36,6 @@ const Categories = () => {
   }, []);
 
   useEffect(() => {
-    console.log("selectedGenreId ====================================");
-    console.log(selectedGenreId);
-    console.log("====================================");
     const selectedCategoryResults = async () => {
       const data = await getMoviesByGenres([selectedGenreId.toString()]);
 
@@ -57,24 +57,36 @@ const Categories = () => {
   };
 
   return (
-    <div className="">
-      <label>
-        <p>Select a category:</p>
+    <>
+      <label className="flex  justify-center">
         <select
           name="selectedGenre"
           className="select select-primary w-full max-w-xs border-primary border-1 my-2"
           value={selectedGenreId}
           onChange={handleGenreSelection}
         >
-          <option disabled selected>
-            All movies
-          </option>
+          <option value={0}>Search by category</option>
           {genresList &&
             genresList.map((el) => <option value={el.id}>{el.name}</option>)}
         </select>
       </label>
-      {<Collection data={moviesList} isLatestReleases={false} />}{" "}
-    </div>
+
+      {selectedGenreId === 0 ? (
+        <>
+          {genresList &&
+            genresList.map((el) => <Category id={el.id} name={el.name} />)}
+        </>
+      ) : (
+        <>
+          <Collection
+            data={moviesList}
+            type={categoryName}
+            isLatestReleases={false}
+          />
+        </>
+      )}
+      {}
+    </>
   );
 };
 

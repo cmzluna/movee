@@ -6,6 +6,7 @@ import { Movie } from "../../types";
 
 type Props = {
   data: Movie[];
+  itemsLimit?: number;
   title?: string;
   type?: string;
   isLatestReleases?: boolean;
@@ -16,6 +17,7 @@ export default function Collection({
   data,
   title = "",
   type = "movie",
+  itemsLimit = 8,
   isLatestReleases,
 }: Props) {
   const TMDB_IMAGE_ENDPOINT = "https://image.tmdb.org/t/p/w300";
@@ -24,8 +26,8 @@ export default function Collection({
 
   return (
     <>
-      <section className=" mb-6 md:mb-10 ">
-        {title && type && <Heading title={title} media_type={type} />}
+      <section className=" mb-2 md:mb-4 ">
+        {(title || type) && <Heading title={title} media_type={type} />}
         <section
           className={
             isLatestReleases
@@ -35,7 +37,7 @@ export default function Collection({
         >
           {data &&
             data
-              .slice(0, 8)
+              .slice(0, itemsLimit)
               .map((item) => (
                 <Card
                   key={item.id}
