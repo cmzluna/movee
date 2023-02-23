@@ -30,7 +30,7 @@ const Rate = ({
     .map((_, i) => i + 1);
 
   return (
-    <div>
+    <div className="my-2">
       {test.map((idx) => (
         <FontAwesomeIcon
           key={idx}

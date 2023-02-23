@@ -29,8 +29,9 @@ const Drawer = ({
 
   return (
     <main
+      onMouseDown={() => setIsOpen(false)}
       className={
-        " translate-y-20 md:translate-y-24  lg:translate-y-0 fixed overflow-hidden   z-10 bg-gray-800 bg-opacity-90 inset-0 transform ease-in-out h-full md:mx-4 lg:h-full lg:mt-4" +
+        " translate-y-20 md:translate-y-24  lg:translate-y-0 fixed overflow-hidden   z-10  bg-opacity-90 inset-0 transform ease-in-out h-full md:mx-4 lg:h-full lg:mt-4" +
         (isOpen
           ? " transition-opacity opacity-100 duration-500 lg:translate-x-34  "
           : " transition-all delay-200 opacity-0 translate-y-0 -translate-x-full lg:translate-0  ") +

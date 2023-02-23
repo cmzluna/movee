@@ -16,7 +16,6 @@ const MovieDetail = () => {
   const favoritesList = useAppSelector(selectFavorites);
   const dispatch = useAppDispatch();
   // TODO const loggedUser = useAppSelector(selectLoggedUser);
-
   const { id } = useParams();
   const movieId = id && parseInt(id);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
@@ -28,7 +27,6 @@ const MovieDetail = () => {
 
   const baseImageURL = "https://image.tmdb.org/t/p/w300";
   const posterImageURL = `https://image.tmdb.org/t/p/original${selectedMovie?.poster_path}`;
-
   const isMovieSelected = selectedMovie && !!Object.keys(selectedMovie).length;
 
   const addToFavorite = () => {
@@ -84,7 +82,6 @@ const MovieDetail = () => {
                 alt=""
                 className="block mx-auto w-full h-full object-cover object-top"
               />
-
               <FontAwesomeIcon
                 className="cursor-pointer  w-10 h-10 absolute top-8 left-8 rounded-md opacity-80  "
                 icon={faHeart}

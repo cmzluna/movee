@@ -14,10 +14,11 @@ import MovieDetail from "./components/MovieDetail";
 
 import Drawer from "./components/Drawer";
 import Categories from "./components/Categories";
+import OutsideClickWrapper from "./components/OutsideClickWrapper";
 
 function App() {
   const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
-
+  const [show, setShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   console.log("EN APP");
