@@ -11,19 +11,10 @@ import Categories from "./components/Categories";
 
 function App() {
   const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
-  const [show, setShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log("EN APP");
-  // SECCION CATEGORIAS
-  // mostrar
-
   useEffect(() => {
-    const getData = async () => {
-      const data = await getLatestReleases();
-
-      return data;
-    };
+    const getData = async () => await getLatestReleases();
 
     getData()
       .then((res) => {
@@ -35,7 +26,6 @@ function App() {
   }, []);
 
   const location = useLocation();
-
   const state = location.state as { backgroundLocation?: Location };
 
   return (
