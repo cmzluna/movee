@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import SearchButton from "./SearchBtn";
 import { useEffect, useState } from "react";
 import { Movie } from "../../types";
 import searchMoviesApi from "../../services/searchMoviesApi";
@@ -15,22 +14,8 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
 
   const [query, setQuery] = useState("");
 
-  //   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-
-  //     if (query.length === 0) {
-  //       return;
-  //     } else {
-  //       setQuery(query);
-  //     }
-  //   };
-
   useEffect(() => {
-    const searchResults = async () => {
-      const data = await searchMoviesApi(query);
-
-      return data;
-    };
+    const searchResults = async () => await searchMoviesApi(query);
 
     searchResults()
       .then((res) => {
@@ -42,9 +27,9 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
   }, [query]);
 
   return (
-    <div className="flex grow mb-8 relative w-3/4 mx-auto">
+    <div className="flex grow mb-8 relative   w-3/4 mx-auto">
       <input
-        className="md:heading-md md:placeholder:heading-md w-full border-primary text-base font-light placeholder:text-base placeholder:text-app-placeholder rounded-lg focus:border focus:border-app-greyish-blue p-3 focus:outline-none pl-20"
+        className="md:heading-md md:placeholder:heading-md w-full border-primary   border-2 text-base font-light placeholder:text-base placeholder:text-app-placeholder rounded-lg p-3  pl-20"
         type="text"
         placeholder={placeholder}
         onChange={(e) => setQuery(e.target.value)}

@@ -63,7 +63,7 @@ const MovieDetail = () => {
   }, [id, isMovieSelected, movieId]);
 
   return (
-    <div className=" h-full w-full top-32 lg:top-20 left-16 lg:left-32 right-16 rounded-lg    ">
+    <div className=" h-full w-full top-32 lg:top-20 left-16 lg:left-32 right-16 rounded-lg   ">
       <header
         style={{
           backgroundImage: `url(${posterImageURL})
