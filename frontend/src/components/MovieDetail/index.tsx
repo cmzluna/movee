@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import getMovieApi from "../../services/getMovie";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -9,16 +9,12 @@ import {
 } from "../../store/slices/favorites";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-// import { selectLoggedUser } from "../../store/slices/users";
 import { Movie } from "../../types";
 import Rate from "../Rate";
 
 const MovieDetail = () => {
-  const navigate = useNavigate();
   const favoritesList = useAppSelector(selectFavorites);
   const dispatch = useAppDispatch();
-  // const loggedUser = useAppSelector(selectLoggedUser);
-
   const { id } = useParams();
   const movieId = id && parseInt(id);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
@@ -30,14 +26,7 @@ const MovieDetail = () => {
 
   const baseImageURL = "https://image.tmdb.org/t/p/w300";
   const posterImageURL = `https://image.tmdb.org/t/p/original${selectedMovie?.poster_path}`;
-
   const isMovieSelected = selectedMovie && !!Object.keys(selectedMovie).length;
-
-  selectedMovie &&
-    console.log(
-      "!!Object.keys(selectedMovie).length = ",
-      !!Object.keys(selectedMovie).length
-    );
 
   const addToFavorite = () => {
     if (isMovieSelected && isFavorite) {
@@ -92,17 +81,12 @@ const MovieDetail = () => {
                 alt=""
                 className="block mx-auto w-full h-full object-cover object-top"
               />
-
               <FontAwesomeIcon
                 className="cursor-pointer w-12 h-12 absolute top-2 left-2 rounded-md "
                 icon={faHeart}
                 color={isFavorite ? "red" : "white"}
                 onClick={addToFavorite}
               />
-
-              {/* {isFavorite && (
-                <p className="  text-white">Added to favorites list</p>
-              )} */}
             </div>
 
             <div className=" relative w-full h-full md:w-2/3 lg:w-3/4  px-2 mx-auto  ">
