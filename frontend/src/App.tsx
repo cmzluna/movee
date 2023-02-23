@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Movie } from "./types";
 import getLatestReleases from "./services/getLatestReleases";
 import Collection from "./components/Collection";
 import Search from "./components/Search";
 import MovieDetail from "./components/MovieDetail";
-
 import Drawer from "./components/Drawer";
 import Categories from "./components/Categories";
-import OutsideClickWrapper from "./components/OutsideClickWrapper";
 
 function App() {
   const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
@@ -54,10 +47,12 @@ function App() {
           path="/"
           element={
             <>
+              <Search />
               <Collection
                 data={latestReleases}
                 title={"Latest Releases"}
                 isLatestReleases={false}
+                itemsLimit={6}
               />
               <Categories />
             </>
