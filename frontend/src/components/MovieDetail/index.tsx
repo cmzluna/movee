@@ -15,6 +15,7 @@ import Rate from "../Rate";
 const MovieDetail = () => {
   const favoritesList = useAppSelector(selectFavorites);
   const dispatch = useAppDispatch();
+  // TODO const loggedUser = useAppSelector(selectLoggedUser);
   const { id } = useParams();
   const movieId = id && parseInt(id);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
@@ -82,17 +83,19 @@ const MovieDetail = () => {
                 className="block mx-auto w-full h-full object-cover object-top"
               />
               <FontAwesomeIcon
-                className="cursor-pointer w-12 h-12 absolute top-2 left-2 rounded-md "
+                className="cursor-pointer  w-10 h-10 absolute top-8 left-8 rounded-md opacity-80  "
                 icon={faHeart}
-                color={isFavorite ? "red" : "white"}
+                color={isFavorite ? " orange" : "gray-200"}
                 onClick={addToFavorite}
               />
             </div>
 
             <div className=" relative w-full h-full md:w-2/3 lg:w-3/4  px-2 mx-auto  ">
               <div className=" content flex flex-col items-end">
-                <h2 className="text-5xl">{selectedMovie?.original_title}</h2>
-                <ul className="flex  ">
+                <h2 className="text-5xl py-4">
+                  {selectedMovie?.original_title}
+                </h2>
+                <ul className="flex py-4 ">
                   {selectedMovie?.genres?.map((genre) => (
                     <li className=" tab_genre">{genre.name}</li>
                   ))}

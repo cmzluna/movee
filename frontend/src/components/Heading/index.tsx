@@ -8,12 +8,12 @@ export default function Heading({ media_type, title }: Props) {
   return (
     <div className="mb-4 flex items-end justify-between sm:mb-6">
       <div className="flex items-end">
-        <h2 className="section-title py-px sm:py-0">{title}</h2>
+        {title && <h2 className="section-title py-px sm:py-0 mr-2">{title}</h2>}
         <p
           className={
             media_type === "movie"
               ? " tab_genre"
-              : "ml-2 rounded-md border-2 border-app-pure-white bg-app-pure-white py-px px-2 text-[8px] font-medium uppercase tracking-wider text-app-dark-blue sm:ml-4 sm:text-[10px] "
+              : "  rounded-md border-2 border-primary bg-app-pure-white py-px px-2 text-[8px] font-medium uppercase tracking-wider text-app-dark-blue sm:ml-4 sm:text-[10px] "
           }
         >
           {media_type}
