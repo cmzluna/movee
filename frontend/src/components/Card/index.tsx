@@ -1,35 +1,26 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Movie } from "../../types";
 import Rate from "../Rate";
+import { TMDB_IMAGE_ENDPOINT } from "../../utilities/endpoints";
+
 export default function Card({
   id,
   original_title,
   original_language,
   poster_path,
-  credits,
   release_date,
   vote_average,
   genres,
 }: Movie) {
   const location = useLocation();
-  const TMDB_IMAGE_ENDPOINT = "https://image.tmdb.org/t/p/w300";
 
-  const testImage = `${TMDB_IMAGE_ENDPOINT}/${poster_path}`;
-
-  const handleClick = () => {
-    //  console.log("location en Card ", location);
-  };
+  const ImageUrl = `${TMDB_IMAGE_ENDPOINT}/${poster_path}`;
 
   return (
     <Link key={id} to={`/movie/${id}`} state={{ backgroundLocation: location }}>
-      <div
-        className="relative bg-gradient-to-b from-white to-black    bg-blue-900 card-hover-animation  mb-4 rounded-md overflow-hidden hover:gradient_border hover:cursor-pointer"
-        onClick={handleClick}
-      >
+      <div className="relative bg-gradient-to-b from-white  to-black  mb-4 rounded-md overflow-hidden  btn_hover  ">
         <img
-          src={testImage}
+          src={ImageUrl}
           alt="stew"
           className="  mix-blend-multiply h-[140px] md:h-[200px] lg:h-[240px] w-full object-cover object-center"
         />

@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "../Card";
 import Heading from "../Heading";
 import Loading from "../Loading";
@@ -10,7 +9,6 @@ type Props = {
   title?: string;
   type?: string;
   isLatestReleases?: boolean;
-  // hasSelector: boolean;
 };
 
 export default function Collection({
@@ -20,10 +18,6 @@ export default function Collection({
   itemsLimit = 8,
   isLatestReleases,
 }: Props) {
-  const TMDB_IMAGE_ENDPOINT = "https://image.tmdb.org/t/p/w300";
-  const baseImageURL = "https://image.tmdb.org/t/p/w300";
-  const testImage = `${TMDB_IMAGE_ENDPOINT}/d9nBoowhjiiYc4FBNtQkPY7c11H.jpg`;
-
   return (
     <>
       <section className=" mb-2 md:mb-4 ">

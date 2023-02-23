@@ -13,8 +13,7 @@ const Category: React.FC<CategoryInterface> = (props) => {
 
   const selectedCategoryResults = async (genreId: number) => {
     try {
-      const moviesOfGenre = await getMoviesByGenres([genreId.toString()]);
-      return moviesOfGenre;
+      return await getMoviesByGenres([genreId.toString()]);
     } catch (err) {
       console.log(err);
     }
@@ -26,7 +25,6 @@ const Category: React.FC<CategoryInterface> = (props) => {
         const moviesOfGenre = res?.data.findByGenres.movies;
 
         if (moviesOfGenre) {
-          console.log("moviesOfGenre ====", moviesOfGenre);
           setData(moviesOfGenre);
         }
       })

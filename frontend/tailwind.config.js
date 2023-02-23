@@ -16,6 +16,7 @@ module.exports = {
         secondary: {
           100: "#5a55e1",
           200: "#383591",
+          300: "#333333",
         },
         "app-pure-white": "hsl(0, 0%, 100%)", // #FFFFFF
         "app-red": "hsl(0, 97%, 63%)", // #FC4747

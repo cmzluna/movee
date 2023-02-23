@@ -30,11 +30,7 @@ const MovieDetail = () => {
   const isMovieSelected = selectedMovie && !!Object.keys(selectedMovie).length;
 
   const addToFavorite = () => {
-    if (isMovieSelected && isFavorite) {
-      console.log("en if!");
-      dispatch(removeFavorite(selectedMovie));
-      return;
-    }
+    if (isMovieSelected && isFavorite) dispatch(removeFavorite(selectedMovie));
 
     isMovieSelected &&
       // TODO:
@@ -55,7 +51,6 @@ const MovieDetail = () => {
         .then((res) => {
           const movie = res?.data.movieDetail.movie;
 
-          console.log("MOVIE = ", movie);
           if (movie) setSelectedMovie(movie);
         })
         .catch((err) => err);
@@ -111,7 +106,7 @@ const MovieDetail = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col mt-10 w-full items-start">
+                <div className="flex flex-col mt-3 w-full items-start">
                   <h2>Main characters:</h2>{" "}
                   <ul className="flex flex-wrap">
                     {selectedMovie?.credits?.cast?.slice(0, 10).map((item) => (
