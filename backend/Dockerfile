@@ -5,11 +5,7 @@ USER node
 
 WORKDIR /home/server
 
-COPY --chown=node:node ./backend/package*.json /home/server/
-
-COPY --chown=node:node ./backend/ .
-
-RUN npm install -g @nestjs/cli
+COPY ./backend/package*.json .
 
 RUN npm i 
 

@@ -14,6 +14,7 @@ services:
       - "3002:3000"
     volumes:
       - ./frontend:/home/app
+      - /home/app/node_modules
 
   server:
     image: server
@@ -29,6 +30,7 @@ services:
       - "8080:8080"
     volumes:
       - ./backend:/home/server
+      - /home/server/node_modules
 networks:
   challenge-network:
     driver: bridge

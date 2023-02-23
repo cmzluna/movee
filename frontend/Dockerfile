@@ -4,12 +4,12 @@ USER node
 
 WORKDIR /home/app
 
-COPY --chown=node:node ./frontend/package*.json /home/app/
-
-COPY --chown=node:node ./frontend/ .
+COPY ./frontend/package*.json .
 
 RUN npm i
 
+COPY . .
+
 EXPOSE 3000
 
-CMD npm start
+CMD ["npm", "start"]
