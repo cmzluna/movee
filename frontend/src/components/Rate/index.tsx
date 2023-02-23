@@ -41,7 +41,6 @@ const Rate = ({
       ))}
     </div>
   );
-  // return <div>{starRating}</div>;
 };
 
 export default Rate;

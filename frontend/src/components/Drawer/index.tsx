@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 type Props = {
@@ -19,10 +18,7 @@ const Drawer = ({
   const movieId = id && parseInt(id);
 
   const goBack = () => {
-    if (movieId) {
-      navigate(-1);
-      return;
-    }
+    if (movieId) navigate(-1);
 
     setIsOpen(false);
   };

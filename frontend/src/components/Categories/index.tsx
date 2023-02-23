@@ -2,45 +2,31 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import getAllGenres from "../../services/getAllGenres";
 import getMoviesByGenres from "../../services/getMoviesByGenres";
 import { Genre, Movie } from "../../types";
-import renderGenreCollection from "../../utilities/renderCategories";
-import renderCategories from "../../utilities/renderCategories";
 import Category from "../Category";
 import Collection from "../Collection";
-import Heading from "../Heading";
 
 const Categories = () => {
   const [genresList, setGenresList] = useState<Genre[]>([]);
   const [moviesList, setMoviesList] = useState<Movie[]>([]);
   const [selectedGenreId, setSelectedGenreId] = useState(0);
-
   const categoryName = genresList.find(
     (genre) => genre.id === selectedGenreId
   )?.name;
 
   useEffect(() => {
-    const getGenresList = async () => {
-      const data = await getAllGenres<Genre>();
-
-      return data;
-    };
+    const getGenresList = async () => await getAllGenres<Genre>();
 
     getGenresList()
       .then((data) => {
         const genres = data?.genres;
-        if (genres) {
-          setGenresList(genres);
-          console.log("GENRES in categories= ", genres);
-        }
+        if (genres) setGenresList(genres);
       })
       .catch((err) => err);
   }, []);
 
   useEffect(() => {
-    const selectedCategoryResults = async () => {
-      const data = await getMoviesByGenres([selectedGenreId.toString()]);
-
-      return data;
-    };
+    const selectedCategoryResults = async () =>
+      await getMoviesByGenres([selectedGenreId.toString()]);
 
     selectedCategoryResults()
       .then((res) => {
@@ -52,7 +38,6 @@ const Categories = () => {
   }, [selectedGenreId]);
 
   const handleGenreSelection = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(typeof +e.target.value);
     setSelectedGenreId(+e.target.value);
   };
 

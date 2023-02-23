@@ -16,11 +16,6 @@ const GET_LATEST = `
  }
 }`;
 
-// genres {
-//   id
-//   name
-// }
-
 type GetLatestMovies = {
   nowPlayingMovies: { movies: Movie[] };
 };

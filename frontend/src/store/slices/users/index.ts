@@ -12,6 +12,8 @@ export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
+    // TODO: Implement multiple users state
+
     // createUser: (state, action: PayloadAction<User>) => {
     //   state.push(action.payload);
     // },
