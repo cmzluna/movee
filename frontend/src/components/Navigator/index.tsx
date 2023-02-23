@@ -4,7 +4,7 @@ import Favorites from "../Favorites";
 import avatar from "../../assets/profile-02.png";
 import Settings from "../../assets/Settings.svg";
 import Bookmarks from "../../assets/bookmarks.svg";
-import Search from "../../assets/search.svg";
+import Search from "../../assets/search-icon.svg";
 import MovieLogo from "../../assets/movie-main.svg";
 import { resetUser } from "../../store/slices/users";
 import { clearAllFavorites } from "../../store/slices/favorites";
