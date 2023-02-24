@@ -1,6 +1,8 @@
 # ratherlabs-challenge
 
 Frontend challenge for Sthorm client.
+[![Watch the video](https://img.youtube.com/vi/vt5fpE0bzSY/maxresdefault.jpg)](https://youtu.be/vt5fpE0bzSY)
+
 
 In order to setup, please set up your ENV variables:
 
