@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080/graphql",
+  baseURL: "/graphql",
   headers: {
     Authorization: `bearer ${process.env.REACT_APP_TMDB_API_KEY}`,
   },
