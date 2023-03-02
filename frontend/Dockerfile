@@ -4,11 +4,11 @@ USER node
 
 WORKDIR /home/app
 
-COPY ./frontend/package*.json .
+COPY --chown=node:node ./package*.json .
 
 RUN npm i
 
-COPY . .
+COPY --chown=node:node . .
 
 EXPOSE 3000
 
