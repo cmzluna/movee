@@ -11,7 +11,7 @@ In order to setup, please set up your ENV variables:
 Create "backend/.env" file with the following contents:
 
 TMDB_API_KEY=**YOUR_TMDB_KEY_HERE** (v3). 
-LANGUAGE="EN".  
+LANGUAGE="EN".    
 REGION="US". 
 
 ### Frontend:
