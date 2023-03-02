@@ -1,0 +1,31 @@
+import { CoreEntity } from 'src/common/entities/core.entity';
+import { Company, Country, Genre, Language } from 'src/common/entities/common.entity';
+import { VideoResults } from 'src/common/entities/video.entity';
+import { Credits } from 'src/people/entities/credits.entity';
+declare type Status = 'Rumored' | 'Planned' | 'In Production' | 'Post Production' | 'Released' | 'Canceled';
+export declare class Movie extends CoreEntity {
+    adult?: boolean;
+    backdrop_path?: string;
+    budget?: number;
+    credits: Credits;
+    genres: Genre[];
+    homepage?: string;
+    imdb_id?: string;
+    original_language?: string;
+    original_title?: string;
+    overview?: string;
+    popularity?: number;
+    poster_path: string;
+    production_companies: Company[];
+    production_countries: Country[];
+    release_date?: string;
+    revenue?: number;
+    runtime?: number;
+    spoken_languages: Language[];
+    status?: Status;
+    tagline?: string;
+    videos: VideoResults;
+    vote_average?: number;
+    vote_count?: number;
+}
+export {};
