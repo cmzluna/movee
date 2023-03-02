@@ -9,6 +9,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import { ApiModule } from './api/api.module';
 import { ISO3166, ISO639 } from './utils/iso';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -34,6 +36,9 @@ import { ISO3166, ISO639 } from './utils/iso';
       apiKey: process.env.TMDB_API_KEY,
       language: process.env.LANGUAGE,
       region: process.env.REGION,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, '..', 'public'),
     }),
     MoviesModule,
     ShowsModule,
