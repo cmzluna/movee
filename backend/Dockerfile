@@ -7,7 +7,7 @@ WORKDIR /home/server
 
 COPY --chown=node:node ./package*.json .
 
-RUN npm install --only=development  
+RUN npm install 
 
 COPY --chown=node:node . .
 

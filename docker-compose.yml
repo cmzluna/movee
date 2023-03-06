@@ -6,8 +6,8 @@ services:
       - challenge-network
     container_name: challenge-frontend
     build:
-      dockerfile: ./frontend/Dockerfile
-      context: ./
+      dockerfile: ./Dockerfile
+      context: ./frontend/
     depends_on:
       - server
     ports:
@@ -24,8 +24,8 @@ services:
     env_file:
       - ./backend/.env
     build:
-      dockerfile: ./backend/Dockerfile
-      context: ./
+      dockerfile: ./Dockerfile
+      context: ./backend/
     ports:
       - "8080:8080"
     volumes:
