@@ -83,3 +83,37 @@ code {
 .tab_genre {
   @apply ml-2 rounded-md border-2 py-px px-2 text-[8px] font-medium uppercase tracking-wider text-app-pure-white sm:ml-4 sm:text-[10px];
 }
+
+::-webkit-scrollbar {
+  width: 0.9rem; /* Mostly for vertical scrollbar */
+  height: 10px; /* Mostly for horizontal scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  /* Foreground */
+  border-radius: 10px;
+  padding: 5px;
+  background-image: linear-gradient(45deg, #272568, #e4510d),
+    linear-gradient(90deg, #d46430, #36338a);
+  -webkit-box-shadow: 0px 0px 20px #ffb694;
+  -moz-box-shadow: 0px 0px 20px #ffb694;
+  box-shadow: 0px 0px 20px #ffb694;
+}
+::-webkit-scrollbar-track {
+  /* Background */
+  /* background: #afafaf;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8); */
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    #d46430 45%,
+    #d46430 55%,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+::-webkit-scrollbar-corner {
+  background-color: white;
+}
