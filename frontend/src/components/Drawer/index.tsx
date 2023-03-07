@@ -51,7 +51,9 @@ const Drawer = ({
         <article
           className={
             "  relative p-4 flex flex-col   " +
-            (type === "MovieDetail" ? " h-full" : " overflow-y-scroll")
+            (type === "MovieDetail"
+              ? " overflow-y-auto max-h-[75vh] styled-scrollbar"
+              : " overflow-y-scroll")
           }
         >
           {children}
