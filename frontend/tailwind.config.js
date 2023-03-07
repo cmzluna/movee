@@ -56,6 +56,11 @@ module.exports = {
       maxWidth: {
         "3/4": "75%",
       },
+      maxHeight: {
+        "1/4": "25%",
+        "1/2": "300px",
+        "3/4": "75%",
+      },
     },
   },
   plugins: [require("daisyui")],
