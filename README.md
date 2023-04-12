@@ -2,6 +2,7 @@
 
 Movee is a movie catalogue, fully responsive. 
 It's been built with TypeScript in the frontend, persisting user's favorites with the help of redux-persist, showing a cool UI using TailwindCSS, fetching GraphQL queries with Axios.
+On the backend, the following Graphql API was used: [https://movieql.netlify.app](https://github.com/hwhang0917/ql-movie-api) (which is a wrapper for [https://www.themoviedb.org/documentation/api](The Movie Database API) ) 
 
 [![Watch the video](https://img.youtube.com/vi/ocTmh7FGyF4/maxresdefault.jpg)](https://youtu.be/ocTmh7FGyF4)
 
