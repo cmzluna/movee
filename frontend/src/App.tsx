@@ -8,23 +8,28 @@ import Search from "./components/Search";
 import MovieDetail from "./components/MovieDetail";
 import Drawer from "./components/Drawer";
 import Categories from "./components/Categories";
+import useCallApi from "./hooks/useCallApi";
 
 function App() {
-  const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
+  // const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const getData = async () => await getLatestReleases();
+  // useEffect(() => {
+  //   const getData = async () => await getLatestReleases();
 
-    getData()
-      .then((res) => {
-        const moviesArray = res?.data.nowPlayingMovies.movies;
+  //   getData()
+  //     .then((res) => {
+  //       const moviesArray = res?.data.nowPlayingMovies.movies;
 
-        if (moviesArray) setLatestReleases(moviesArray);
-      })
-      .catch((err) => err);
-  }, []);
+  //       if (moviesArray) setLatestReleases(moviesArray);
+  //     })
+  //     .catch((err) => err);
+  // }, []);
 
+  const { isLoading, data: latestReleases } = useCallApi(
+    getLatestReleases,
+    "data.nowPlayingMovies.movies"
+  );
   const location = useLocation();
   const state = location.state as { backgroundLocation?: Location };
 
