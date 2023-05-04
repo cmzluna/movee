@@ -11,7 +11,7 @@ const Search = () => {
       <SearchBar setResults={setResults} />
 
       {!!results.length && (
-        <Collection data={results} type={"Search Results"} />
+        <Collection isLoading data={results} type={"Search Results"} />
       )}
     </div>
   );

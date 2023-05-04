@@ -5,7 +5,11 @@ import { Genre, Movie } from "../../types";
 import Category from "../Category";
 import Collection from "../Collection";
 
-const Categories = () => {
+type Props = {
+  isLoading: boolean;
+};
+
+const Categories = ({ isLoading }: Props) => {
   const [genresList, setGenresList] = useState<Genre[]>([]);
   const [moviesList, setMoviesList] = useState<Movie[]>([]);
   const [selectedGenreId, setSelectedGenreId] = useState(0);
@@ -59,11 +63,14 @@ const Categories = () => {
       {selectedGenreId === 0 ? (
         <>
           {genresList &&
-            genresList.map((el) => <Category id={el.id} name={el.name} />)}
+            genresList.map((el) => (
+              <Category id={el.id} name={el.name} isLoading={isLoading} />
+            ))}
         </>
       ) : (
         <>
           <Collection
+            isLoading={isLoading}
             data={moviesList}
             type={categoryName}
             isLatestReleases={false}
