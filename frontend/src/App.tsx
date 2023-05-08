@@ -24,13 +24,13 @@ function App() {
   return (
     <div className="App">
       <Routes location={state?.backgroundLocation || location}>
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search isLoading={isLoading} />} />
 
         <Route
           path="/"
           element={
             <>
-              <Search />
+              <Search isLoading={isLoading} />
 
               <Collection
                 isLoading={isLoading}

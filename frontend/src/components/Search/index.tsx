@@ -3,7 +3,11 @@ import Collection from "../Collection";
 import SearchBar from "../SearchBar";
 import { Movie } from "../../types";
 
-const Search = () => {
+type Props = {
+  isLoading: boolean;
+};
+
+const Search = ({ isLoading }: Props) => {
   const [results, setResults] = useState<Movie[]>([]);
 
   return (
@@ -11,7 +15,11 @@ const Search = () => {
       <SearchBar setResults={setResults} />
 
       {!!results.length && (
-        <Collection isLoading data={results} type={"Search Results"} />
+        <Collection
+          isLoading={isLoading}
+          data={results}
+          type={"Search Results"}
+        />
       )}
     </div>
   );
