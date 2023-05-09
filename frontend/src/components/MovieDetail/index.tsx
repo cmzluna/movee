@@ -11,14 +11,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Movie } from "../../types";
 import Rate from "../Rate";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const MovieDetail = () => {
+  // TODO const loggedUser = useAppSelector(selectLoggedUser);
+  // move skeletons to a separate file
   const favoritesList = useAppSelector(selectFavorites);
   const dispatch = useAppDispatch();
-  // TODO const loggedUser = useAppSelector(selectLoggedUser);
   const { id } = useParams();
   const movieId = id && parseInt(id);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const isFavorite =
     favoritesList &&
@@ -47,6 +51,7 @@ const MovieDetail = () => {
     };
 
     if (movieId && !isMovieSelected) {
+      // TODO: modify with useCallApi
       getMovie(movieId)
         .then((res) => {
           const movie = res?.data.movieDetail.movie;
@@ -54,8 +59,10 @@ const MovieDetail = () => {
           if (movie) setSelectedMovie(movie);
         })
         .catch((err) => err);
+
+      setIsLoading(false);
     }
-  }, [id, isMovieSelected, movieId]);
+  }, [isMovieSelected, movieId]);
 
   return (
     <div className=" h-full w-full top-32 lg:top-20 left-16 lg:left-32 right-16 rounded-lg   ">
@@ -72,11 +79,16 @@ const MovieDetail = () => {
         >
           <div className=" flex flex-wrap    ">
             <div className=" h-80 w-full md:w-1/3 lg:w-1/3">
-              <img
-                src={`${baseImageURL}/${selectedMovie?.poster_path}`}
-                alt=""
-                className="block mx-auto w-full h-full object-cover object-top"
-              />
+              {selectedMovie ? (
+                <img
+                  src={`${baseImageURL}/${selectedMovie?.poster_path}`}
+                  alt=""
+                  className="block mx-auto w-full h-full object-cover object-top"
+                />
+              ) : (
+                <Skeleton className="block mx-auto w-full h-full object-cover object-top" />
+              )}
+
               <FontAwesomeIcon
                 className="cursor-pointer  w-10 h-10 absolute top-8 left-8 rounded-md opacity-80  "
                 icon={faHeart}
@@ -91,19 +103,42 @@ const MovieDetail = () => {
                   {selectedMovie?.original_title}
                 </h2>
                 <div className="  mt-10 ">
-                  <h2>Average rating:</h2>{" "}
-                  {selectedMovie && (
+                  <h2>Average rating:</h2>
+                  {selectedMovie ? (
                     <Rate rating={selectedMovie.vote_average} />
+                  ) : (
+                    <Skeleton />
                   )}
                 </div>
-                <ul className="flex py-4 ">
-                  {selectedMovie?.genres?.map((genre) => (
-                    <li className=" tab_genre">{genre.name}</li>
-                  ))}
+
+                <ul className="flex py-4  ">
+                  {selectedMovie ? (
+                    selectedMovie?.genres.map((genre) => (
+                      <li className=" tab_genre">{genre.name}</li>
+                    ))
+                  ) : (
+                    <div className="flex gap-2">
+                      {[...Array(5)].map((_, index) => (
+                        <Skeleton
+                          key={index}
+                          className=" ml-2 rounded-md py-px px-2 sm:ml-4"
+                        />
+                      ))}
+                    </div>
+                  )}
                 </ul>
-                <div className=" text-start my-10 h-42 ">
-                  {selectedMovie?.overview}
+
+                <div className=" text-start my-10 h-42 w-full">
+                  {selectedMovie ? (
+                    selectedMovie?.overview
+                  ) : (
+                    <Skeleton
+                      count={6}
+                      className=" ml-2 rounded-md py-px px-2 sm:ml-4"
+                    />
+                  )}
                 </div>
+
                 <div className="flex flex-col mt-3 w-full items-start">
                   <h2>Main characters:</h2>{" "}
                   <ul className="flex flex-wrap">

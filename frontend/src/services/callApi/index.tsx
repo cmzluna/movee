@@ -15,7 +15,6 @@ export default async function callApi<T>(query: string, variables: object) {
     });
     return data;
   } catch (error) {
-    console.log("** ERROR => ", error);
     if (axios.isAxiosError(error) && error.response?.data) {
       return Promise.reject(error.response.data);
     }

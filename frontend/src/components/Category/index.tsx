@@ -4,6 +4,7 @@ import { Movie } from "../../types";
 import Collection from "../Collection";
 
 interface CategoryInterface {
+  isLoading: boolean;
   id: number;
   name: string;
 }
@@ -35,6 +36,7 @@ const Category: React.FC<CategoryInterface> = (props) => {
     <div>
       {data && (
         <Collection
+          isLoading={props.isLoading}
           data={data}
           type={props.name}
           itemsLimit={4}

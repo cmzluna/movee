@@ -8,6 +8,7 @@ import { persistor } from "./store";
 import "./index.css";
 import App from "./App";
 import Layout from "./components/Layout";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,7 +19,9 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         <Router>
           <Layout>
-            <App />
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
+              <App />
+            </SkeletonTheme>
           </Layout>
         </Router>
       </PersistGate>

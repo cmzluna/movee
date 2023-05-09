@@ -11,6 +11,7 @@ const Favorites = () => {
       <div className="  ">
         {favoritesList.length ? (
           <Collection
+            isLoading={false}
             data={favoritesList}
             isLatestReleases={false}
             title="Your favorites"

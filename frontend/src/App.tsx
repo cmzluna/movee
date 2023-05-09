@@ -8,43 +8,39 @@ import Search from "./components/Search";
 import MovieDetail from "./components/MovieDetail";
 import Drawer from "./components/Drawer";
 import Categories from "./components/Categories";
+import useCallApi from "./hooks/useCallApi";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
-  const [latestReleases, setLatestReleases] = useState<Movie[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const getData = async () => await getLatestReleases();
-
-    getData()
-      .then((res) => {
-        const moviesArray = res?.data.nowPlayingMovies.movies;
-
-        if (moviesArray) setLatestReleases(moviesArray);
-      })
-      .catch((err) => err);
-  }, []);
-
+  const { isLoading, data: latestReleases } = useCallApi(
+    getLatestReleases,
+    "data.nowPlayingMovies.movies"
+  );
   const location = useLocation();
   const state = location.state as { backgroundLocation?: Location };
 
   return (
     <div className="App">
       <Routes location={state?.backgroundLocation || location}>
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search isLoading={isLoading} />} />
 
         <Route
           path="/"
           element={
             <>
-              <Search />
+              <Search isLoading={isLoading} />
+
               <Collection
+                isLoading={isLoading}
                 data={latestReleases}
                 title={"Latest Releases"}
                 isLatestReleases={false}
                 itemsLimit={6}
               />
-              <Categories />
+
+              <Categories isLoading={isLoading} />
             </>
           }
         />
